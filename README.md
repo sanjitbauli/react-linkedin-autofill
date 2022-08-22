@@ -65,4 +65,4 @@ npm run deploy-storybook
 ##### Checkout my other login: [React LinkedIn Auto fill](https://github.com/sanjitbauli/react-linkedin-autofill)
 
 
-### Follow me on Twitter: [@anthonyjgrove](https://twitter.com/sanjitbauli)
+### Follow me on Twitter: [@sanjitbauli](https://twitter.com/sanjitbauli)
