@@ -8,7 +8,11 @@
 
 ## Install
 ```
-npm install @sanjitbauli/react-linkedin-autofill@0.0.1
+npm install @sanjitbauli/react-linkedin-autofill
+```
+or
+```
+yarn add @sanjitbauli/react-linkedin-autofill
 
 ```
 
