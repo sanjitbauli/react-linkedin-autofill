@@ -17,12 +17,10 @@ npm install @sanjitbauli/react-linkedin-autofill@0.0.1
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import LoadLinkedInFormTags from '@sanjitbauli/react-linkedin-autofill';
-// or
-import { LoadLinkedInFormTags } from '@sanjitbauli/react-linkedin-autofill';
+import LinkedInAutofill from '@sanjitbauli/react-linkedin-autofill';
 
 ReactDOM.render(
-  <LoadLinkedInFormTags
+  <LinkedInAutofill
     onChangeCallback={(fieldId, value)}
   />,
   document.getElementById('linkedInAutofillButton')
@@ -38,6 +36,19 @@ When a field is filled by linkedIn, this callback will gets triggered whith the 
 |    params         |   value  |             default value            |   description    |
 |:-----------------:|:--------:|:------------------------------------:|:----------------:|
 | onChangeCallback  | function |               REQUIRED               |                  |
+
+List of field IDs in the callback function
+|  field id   |
+|:-----------:|
+|  firstName  |
+|  lastName   |
+|  email      |
+|  phone      |
+|  company    |
+|  country    |
+|  state      |
+|  zipCode    |
+|  jobTitle   |
 
 <!-- 
 ## Dev Server

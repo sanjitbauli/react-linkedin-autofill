@@ -8,9 +8,14 @@ const fieldList = [
   "country",
   "state",
   "zipCode",
-  "jobTitle"
+  "jobTitle",
 ];
-export const optionalLinkedInFields = ["jobTitle", "company", "phone", "zipCode"];
+export const optionalLinkedInFields = [
+  "jobTitle",
+  "company",
+  "phone",
+  "zipCode",
+];
 export function loadLinkedInAutofill() {
   // console.log('loadLinkedInAutofill', questions);
   const script = document.createElement("script");
@@ -25,48 +30,54 @@ export function loadLinkedInAutofill() {
 }
 let jsEvent: String[] = [];
 type Props = {
-  onChangeCallback: Function
-}
-declare global { // to access the global type String
+  onChangeCallback: Function;
+};
+declare global {
+  // to access the global type String
   interface HTMLInputElement {
     prototyoe: {
       addInputChangedByJsListener(cb: Function): string;
-    }
+    };
   }
 }
-export class LoadLinkedInFormTags extends React.Component<Props, {}> {
+export class LinkedInAutofill extends React.Component<Props, {}> {
   componentDidMount() {
     const { onChangeCallback } = this.props;
     try {
       if (typeof window !== "undefined") {
-        var valueDescriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value");
-        HTMLInputElement.prototype.addInputChangedByJsListener = function(cb: Function) {
+        var valueDescriptor = Object.getOwnPropertyDescriptor(
+          HTMLInputElement.prototype,
+          "value"
+        );
+        HTMLInputElement.prototype.addInputChangedByJsListener = function (
+          cb: Function
+        ) {
           if (!this.hasOwnProperty("_inputChangedByJSListeners")) {
             this._inputChangedByJSListeners = [];
           }
           this._inputChangedByJSListeners.push(cb);
         };
         Object.defineProperty(HTMLInputElement.prototype, "value", {
-          get: function() {
+          get: function () {
             return valueDescriptor.get.apply(this, arguments);
           },
-          set: function() {
+          set: function () {
             var self = this;
             valueDescriptor.set.apply(self, arguments);
             if (this.hasOwnProperty("_inputChangedByJSListeners")) {
-              this._inputChangedByJSListeners.forEach(function(cb) {
+              this._inputChangedByJSListeners.forEach(function (cb) {
                 cb.apply(self);
               });
             }
-          }
+          },
         });
-        fieldList.forEach(fieldId => {
+        fieldList.forEach((fieldId) => {
           const input = document.getElementById(`in-${fieldId}`);
           const eventAdded = jsEvent && jsEvent.indexOf(fieldId) > -1;
           if (input && !eventAdded) {
             try {
               jsEvent.push(fieldId);
-              input.addInputChangedByJsListener(function(this: any) {
+              input.addInputChangedByJsListener(function (this: any) {
                 if (fieldId === "email") {
                   // set flag true when linkedIn used.
                   onChangeCallback("linkedInAutofill", "1");
@@ -74,7 +85,10 @@ export class LoadLinkedInFormTags extends React.Component<Props, {}> {
                 onChangeCallback(fieldId, this.value);
               });
             } catch (e) {
-              console.log("Unablae to add addInputChangedByJsListener for the field", fieldId);
+              console.log(
+                "Unablae to add addInputChangedByJsListener for the field",
+                fieldId
+              );
             }
           }
         });
@@ -114,31 +128,11 @@ data-field-zip="in-zipCode"
 <input type="text" id="in-country" />
 <input type="text" id="in-state" />
 <input type="text" id="in-zipCode" />
-</span>`
+</span>`,
           }}
         />
       </>
     );
   }
 }
-export function linkedInAutofillIsEnabled(formConfig) {
-  // return true;
-  return formConfig && formConfig.linkedInAutofill;
-}
-export function isButtonHidden() {
-  let isSafari;
-  try {
-    isSafari = /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent);
-  } catch (e) {}
-  return isSafari;
-}
-export function blurEmail() {
-  try {
-    const email = document.getElementById("email");
-    email.focus();
-    setTimeout(() => {
-      email.blur();
-    }, 10);
-  } catch (e) {}
-}
-export default LoadLinkedInFormTags;
+export default LinkedInAutofill;
