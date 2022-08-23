@@ -1,11 +1,11 @@
 {
-  "name": "@sanjitbauli/react-linkedin-autofill",
+  "name": "react-linkedin-autofill",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/sanjitbauli"
+    "registry": "https://registry.npmjs.org"
   },
   "description": "linked in autofill component for react",
   "author": "sanjitbauli@gmail.com",
-  "version": "0.0.4",
+  "version": "0.0.14",
   "scripts": {
     "rollup": "rollup -c"
   },

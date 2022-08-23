@@ -17,7 +17,7 @@ npm install @sanjitbauli/react-linkedin-autofill@0.0.1
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import GoogleLogin from 'react-google-login';
+import LoadLinkedInFormTags from '@sanjitbauli/react-linkedin-autofill';
 // or
 import { LoadLinkedInFormTags } from '@sanjitbauli/react-linkedin-autofill';
 
