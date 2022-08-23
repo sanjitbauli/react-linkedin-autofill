@@ -8,11 +8,11 @@
 
 ## Install
 ```
-npm install @sanjitbauli/react-linkedin-autofill
+npm install react-linkedin-autofill
 ```
 or
 ```
-yarn add @sanjitbauli/react-linkedin-autofill
+yarn add react-linkedin-autofill
 
 ```
 
@@ -21,7 +21,7 @@ yarn add @sanjitbauli/react-linkedin-autofill
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import LinkedInAutofill from '@sanjitbauli/react-linkedin-autofill';
+import LinkedInAutofill from 'react-linkedin-autofill';
 
 ReactDOM.render(
   <LinkedInAutofill
